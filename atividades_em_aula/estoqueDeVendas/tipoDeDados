@@ -1,0 +1,11 @@
+Minha digressão sobre tipos de dados:
+
+100.00
+32.75
+97.83
+
+CHAR(tamanho)
+DECIMAL(qtd máxima antes da vírgula, qtd depois da vírgula)
+DECIMAL(10,2)
+FLOAT
+

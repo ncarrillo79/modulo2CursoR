@@ -1,0 +1,95 @@
+https://dbdiagram.io/d/5fcab7409a6c525a03b9dd4e
+
+CREATE DATABASE carros;
+
+USE carros;
+
+CREATE TABLE `marca` (
+  marca_id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(60),
+  nacionalidade VARCHAR(60),
+  slogan VARCHAR(255),
+  ano_de_criacao INT
+);
+
+CREATE TABLE  `modelo` (
+  modelo_id INT AUTO_INCREMENT PRIMARY KEY,
+  marca_id INT ,
+  ano INT,
+  tipo VARCHAR(50),
+  nome VARCHAR(50)
+);
+
+CREATE TABLE `carro` (
+  carro_id INT AUTO_INCREMENT PRIMARY KEY,
+  modelo_id INT ,
+  chassi CHAR(17),
+  proprietario_id INT,
+  cor VARCHAR(80),
+  placa CHAR(7)
+);
+
+CREATE TABLE `proprietario` (
+  proprietario_id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255),
+  cpf CHAR(11),
+  endereco VARCHAR(255)
+);
+
+INSERT INTO `proprietario` (nome, cpf, endereco)
+VALUES ('FELIPE STREVA', '11111111111', 'Rua 1 casa 2 ap 3');
+
+INSERT INTO `proprietario` (nome, cpf, endereco)
+VALUES ('BRUNO TADEU', '22222222222', 'Tijucano');
+
+INSERT INTO `marca` (nome, nacionalidade, slogan, ano_de_criacao)
+VALUES ('HONDA', 'JAPONESA', 'The Power of Dreams' , 1948);
+
+INSERT INTO `marca` (nome, nacionalidade, slogan, ano_de_criacao)
+VALUES ('FIAT', 'ITALIANA', 'A PAIXÃO MOVE', 1899);
+
+INSERT INTO `marca` (nome, nacionalidade, slogan, ano_de_criacao)
+VALUES ('VW', 'ALEMÃ', 'Das Auto', 1937 ), ('BWM', 'ALEMÃ','The ultimate driving machine', 1916);
+
+INSERT INTO `modelo` (marca_id, ano, tipo, nome)
+VALUES (1, 2002,'Sedan', 'CIVIC'), (2, 1970,'Old School', 'Fuskinha');
+
+INSERT INTO `modelo` (marca_id, ano, tipo, nome)
+VALUES (1, 2009,'Cidade', 'Fit');
+
+INSERT INTO `carro` (modelo_id, chassi, proprietario_id, cor, placa)
+VALUES (1, '1542HGTY256458753' , 2, 'prata',  'LHH3737' ), (3, '265HGBYTH98POJKJH', 1, 'amarelo', 'YGH7852');
+
+SELECT * FROM proprietario;
+SELECT * FROM carro;
+SELECT * FROM marca;
+SELECT * FROM modelo;
+
+-- Mostrar todas as marcas alemaes
+SELECT * FROM marca
+WHERE nacionalidade LIKE 'ALEMÃ';
+
+-- Inserir um novo proprietario de carro
+INSERT INTO `proprietario` (nome, cpf, endereco)
+VALUES ('Anderson Ferreira', '95784858659', 'Ilha do Governador');
+
+-- Inserir um novo modelo de carro
+INSERT INTO modelo (marca_id, ano, tipo, nome)
+VALUES (4 , 1998, 'Adventure', 'Palio');
+
+-- Insrir um novo carro
+INSERT INTO carro (modelo_id, chassi, proprietario_id, cor, placa)
+VALUES (4 , '123456789JLPHTKDW', '3', 'branco', '1234LKP');
+
+-- Atualizar o nome de Fuskinha para Fuska
+UPDATE modelo 
+SET nome='FUSKA'
+WHERE modelo_id=2;
+
+-- Inserir um proprietario e depois deletar ele
+INSERT INTO `proprietario` (nome, cpf, endereco)
+VALUES ('Joe', '95784858659', 'Ilha do Governador');
+
+DELETE FROM proprietario
+WHERE proprietario_id = 4;
+
